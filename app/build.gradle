@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
+    id 'dagger.hilt.android.plugin'
+}
+
+android {
+    compileSdk 30
+
+    defaultConfig {
+        applicationId "com.test.currentTest"
+        minSdk 24
+        targetSdk 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        viewBinding true
+        dataBinding true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+
+    def navVersion = "2.3.5"
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
+
+    def daggerHiltVersion = "2.38.1"
+    implementation("com.google.dagger:hilt-android:$daggerHiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$daggerHiltVersion")
+
+    def rxAndroidVersion = "2.0.1"
+    def rxJavaVersion = "2.1.8"
+    implementation ("io.reactivex.rxjava2:rxandroid:$rxAndroidVersion")
+    implementation ("io.reactivex.rxjava2:rxjava:$rxJavaVersion")
+
+    def lifeCycleVersion = "2.3.1"
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifeCycleVersion")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:$lifeCycleVersion")
+
+    def glideVersion = "4.12.0"
+    implementation ("com.github.bumptech.glide:glide:$glideVersion")
+    annotationProcessor ("com.github.bumptech.glide:compiler:$glideVersion")
+
+    def refreshVersion = "1.1.0"
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:$refreshVersion")
+
+    def roomVersion = "2.3.0"
+    implementation ("androidx.room:room-runtime:$roomVersion")
+    kapt ("androidx.room:room-compiler:$roomVersion")
+    implementation ("androidx.room:room-ktx:$roomVersion")
+    androidTestImplementation ("androidx.room:room-testing:$roomVersion")
+
+}
+
+kapt {
+    correctErrorTypes = true
+}
